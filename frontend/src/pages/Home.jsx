@@ -8,6 +8,7 @@ import Gallery from "@/components/Gallery";
 import Reviews from "@/components/Reviews";
 import Booking from "@/components/Booking";
 import Location from "@/components/Location";
+import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -24,6 +25,7 @@ const Home = () => {
         <Reviews />
         <Booking />
         <Location />
+        <InstagramFeed />
       </main>
       <Footer />
       <Toaster position="bottom-right" />

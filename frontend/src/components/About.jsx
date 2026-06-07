@@ -32,6 +32,11 @@ export const About = () => {
               {t.about.p2}
             </p>
           </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-4 text-foreground/80 text-base sm:text-lg leading-relaxed max-w-xl">
+              {t.about.p3}
+            </p>
+          </Reveal>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {t.about.values.map((v, i) => {

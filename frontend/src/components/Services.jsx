@@ -3,14 +3,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import { ArrowUpRight } from "lucide-react";
-import { SERVICE_IMAGES } from "@/constants/site";
+import { SITE } from "@/constants/site";
 
 export const Services = () => {
   const { t } = useLanguage();
-
-  const scrollToBooking = () => {
-    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -26,41 +22,67 @@ export const Services = () => {
           testId="services-header"
         />
 
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {t.services.items.map((item, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <article
-                data-testid={`service-card-${i}`}
-                className="group rounded-3xl overflow-hidden bg-card border border-border/70 hover:border-primary/40 transition-all duration-500 h-full flex flex-col"
+        <div className="mt-14 sm:mt-20 border-t border-border/70">
+          {t.services.categories.map((cat, ci) => (
+            <Reveal key={ci} delay={ci * 0.05}>
+              <div
+                data-testid={`service-category-${ci}`}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-10 sm:py-12 border-b border-border/70"
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <img
-                    src={SERVICE_IMAGES[i % SERVICE_IMAGES.length]}
-                    alt={item.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="lg:col-span-4">
+                  <span className="text-xs tracking-luxury uppercase text-primary">
+                    {`0${ci + 1}`}
+                  </span>
+                  <h3 className="mt-2 font-display text-3xl sm:text-4xl leading-tight">
+                    {cat.label}
+                  </h3>
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-display text-2xl leading-tight">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 flex-1">{item.desc}</p>
-                  <button
-                    onClick={scrollToBooking}
-                    data-testid={`service-cta-${i}`}
-                    className="mt-5 inline-flex items-center gap-1 text-xs tracking-luxury uppercase text-foreground hover:text-primary transition-colors w-fit"
-                  >
-                    {t.services.cta}
-                    <ArrowUpRight
-                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      strokeWidth={1.5}
-                    />
-                  </button>
-                </div>
-              </article>
+                <ul className="lg:col-span-8">
+                  {cat.items.map((item, ii) => (
+                    <li
+                      key={ii}
+                      data-testid={`service-item-${ci}-${ii}`}
+                      className="group flex items-center justify-between gap-4 py-4 border-b border-border/50 last:border-0"
+                    >
+                      <div>
+                        <p className="font-display text-xl sm:text-2xl leading-tight">
+                          {item.name}
+                        </p>
+                        {item.desc && (
+                          <p className="text-sm text-muted-foreground mt-1 max-w-md">
+                            {item.desc}
+                          </p>
+                        )}
+                      </div>
+                      <ArrowUpRight
+                        className="h-5 w-5 shrink-0 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        strokeWidth={1.4}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-12 sm:mt-16 flex justify-center">
+            <a
+              href={SITE.booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="services-full-offer"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+            >
+              {t.services.cta}
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={1.5}
+              />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ import { Star, Quote } from "lucide-react";
 export const Reviews = () => {
   const { t } = useLanguage();
   const items = t.reviews.items;
-  // Duplicate for marquee
+  // Duplicate for seamless marquee
   const loop = [...items, ...items];
 
   return (
@@ -36,7 +36,7 @@ export const Reviews = () => {
             <div
               key={i}
               data-testid={`review-card-${i}`}
-              className="w-[300px] sm:w-[360px] shrink-0 rounded-3xl border border-border/70 bg-card p-6 sm:p-8"
+              className="w-[300px] sm:w-[380px] shrink-0 rounded-3xl border border-border/70 bg-card p-6 sm:p-8"
             >
               <Quote className="h-6 w-6 text-primary" strokeWidth={1.4} />
               <p className="mt-4 font-display text-xl sm:text-2xl leading-snug text-foreground">

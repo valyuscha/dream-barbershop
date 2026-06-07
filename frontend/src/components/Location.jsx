@@ -1,8 +1,10 @@
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Reveal from "@/components/Reveal";
-import { MapPin, Clock, Phone, Navigation } from "lucide-react";
-import { SITE } from "@/constants/site";
+import { MapPin, Clock, Phone, Navigation, Wifi, Car, CreditCard, Heart } from "lucide-react";
+import { SITE, ABOUT_IMAGE } from "@/constants/site";
+
+const AMENITY_ICONS = [Wifi, Car, CreditCard, Heart];
 
 export const Location = () => {
   const { t } = useLanguage();
@@ -11,15 +13,21 @@ export const Location = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="rounded-[2rem] overflow-hidden border border-border/70 bg-card">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Map preview */}
-            <div className="relative min-h-[320px] lg:min-h-[520px]">
+            {/* Map / exterior preview */}
+            <a
+              href={SITE.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="location-map-link"
+              className="group relative min-h-[320px] lg:min-h-[560px] block"
+            >
               <img
-                src="https://images.unsplash.com/photo-1573487895669-c98ce2e9d2cf?crop=entropy&cs=srgb&fm=jpg&w=1400&q=85"
-                alt="Kraków street view"
+                src={ABOUT_IMAGE}
+                alt="Moon Beauty Space — Kraków"
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-foreground/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/45 via-foreground/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
                 <div className="rounded-2xl bg-background/85 backdrop-blur-md px-5 py-4 border border-border/60">
                   <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
@@ -27,8 +35,11 @@ export const Location = () => {
                   </p>
                   <p className="font-display text-xl mt-1">{SITE.address.split(",")[0]}</p>
                 </div>
+                <div className="h-12 w-12 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                  <Navigation className="h-5 w-5" strokeWidth={1.5} />
+                </div>
               </div>
-            </div>
+            </a>
 
             {/* Info */}
             <div className="p-8 sm:p-12 flex flex-col gap-8 justify-center">
@@ -91,7 +102,31 @@ export const Location = () => {
                 </Reveal>
               </div>
 
+              {/* Amenities */}
               <Reveal delay={0.25}>
+                <div>
+                  <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
+                    {t.location.amenitiesLabel}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2.5" data-testid="location-amenities">
+                    {t.location.amenities.map((a, i) => {
+                      const Icon = AMENITY_ICONS[i % AMENITY_ICONS.length];
+                      return (
+                        <span
+                          key={i}
+                          data-testid={`location-amenity-${i}`}
+                          className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-secondary/40 px-4 py-2 text-sm text-foreground/80"
+                        >
+                          <Icon className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                          {a}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.3}>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                   <a
                     href={SITE.mapsUrl}

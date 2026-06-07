@@ -7,7 +7,7 @@ const navItems = [
   { id: "about", key: "about" },
   { id: "services", key: "services" },
   { id: "gallery", key: "gallery" },
-  { id: "booking", key: "booking" },
+  { id: "reviews", key: "reviews" },
   { id: "location", key: "location" },
 ];
 

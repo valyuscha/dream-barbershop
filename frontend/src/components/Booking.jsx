@@ -3,8 +3,8 @@ import axios from "axios";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
-import { Loader2, CheckCircle2, ArrowRight, ExternalLink } from "lucide-react";
-import { SITE } from "@/constants/site";
+import { Loader2, CheckCircle2, ArrowRight, ExternalLink, Phone } from "lucide-react";
+import { SITE, BOOKING_IMAGE } from "@/constants/site";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -43,7 +43,7 @@ export const Booking = () => {
     setStatus("idle");
   };
 
-  const services = t.services.items.map((s) => s.title);
+  const services = t.services.categories.flatMap((c) => c.items.map((i) => i.name));
 
   return (
     <section
@@ -197,6 +197,14 @@ export const Booking = () => {
                         )}
                       </button>
                       <a
+                        href={`tel:${SITE.phoneTel}`}
+                        data-testid="booking-call-link"
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-foreground/20 hover:border-foreground/60 px-8 py-4 text-xs tracking-luxury uppercase transition-colors"
+                      >
+                        <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
+                        {t.booking.call}
+                      </a>
+                      <a
                         href={SITE.booksyUrl}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -219,8 +227,8 @@ export const Booking = () => {
               <div className="rounded-3xl overflow-hidden border border-border/70 bg-card h-full flex flex-col">
                 <div className="aspect-[5/4] relative">
                   <img
-                    src="https://images.unsplash.com/photo-1633681926022-84852f7b2eb6?crop=entropy&cs=srgb&fm=jpg&w=900&q=85"
-                    alt="Salon ambience"
+                    src={BOOKING_IMAGE}
+                    alt="Moon Beauty Space"
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
