@@ -1,103 +1,130 @@
 {
-  "theme": "Light (with Dark mode support)",
-  "archetype": "5 (Luxury) and 1 (Organic & Earthy) Hybrid",
+  "project_name": "Moon Beauty Space Redesign",
+  "theme": {
+    "archetype": "Archetype 1 (Organic & Earthy) mixed with Archetype 5 (Luxury)",
+    "description": "A premium nail salon in Kraków. The tone is warm, high-end editorial, and welcoming. We are moving away from sterile clinical looks and generic SaaS/booking interfaces.",
+    "mode": "Light mode primary, elegant deep charcoal dark mode."
+  },
   "colors": {
     "light": {
-      "background": "#FAF9F6",
-      "surface": "#FFFFFF",
-      "text": "#1A1918",
-      "primary": "#B59A7D",
-      "primary_hover": "#A38769",
-      "secondary": "#E8E3DD",
-      "border": "#E5E0DA"
+      "background": "#FDFBF9",
+      "surface": "#F5F2EC",
+      "surface_alt": "#EADACB",
+      "primary": "#1C1C1C",
+      "primary_foreground": "#FDFBF9",
+      "text": "#1C1C1C",
+      "text_muted": "#5C5C5C",
+      "border": "#E5E0D8"
     },
     "dark": {
-      "background": "#1A1918",
-      "surface": "#242220",
-      "text": "#FAF9F6",
-      "primary": "#C8B49C",
-      "primary_hover": "#D4C2AE",
-      "secondary": "#302E2B",
-      "border": "#3A3835"
+      "background": "#141414",
+      "surface": "#1E1E1E",
+      "surface_alt": "#2A2724",
+      "primary": "#FDFBF9",
+      "primary_foreground": "#141414",
+      "text": "#FDFBF9",
+      "text_muted": "#A3A3A3",
+      "border": "#2E2E2E"
     }
   },
   "typography": {
-    "heading": "Cormorant Garamond",
-    "body": "Manrope",
-    "weights": {
-      "heading": [300, 400, 600],
-      "body": [300, 400, 500]
+    "fonts": {
+      "heading": "Cormorant Garamond, serif",
+      "body": "Manrope, sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl font-normal tracking-tight",
+      "body": "text-base leading-relaxed text-muted-foreground",
+      "overline": "text-xs uppercase tracking-[0.2em] font-semibold"
     }
   },
-  "layout": {
-    "spacing_scale": "Generous (p-8, p-12, p-16, p-24, p-32)",
-    "container_max_width": "max-w-7xl",
-    "border_radius": "rounded-2xl for main cards, rounded-full for buttons"
-  },
-  "animations": {
-    "style": "Smooth, elegant, slow reveals",
-    "scroll_reveal": "Framer motion fade-in-up with 0.6s duration and ease-out",
-    "hover": "Subtle scale up (1.02) and image darkening for text contrast"
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-6 sm:px-12",
+    "section_padding": "py-24 sm:py-32",
+    "gap": "gap-8 sm:gap-12",
+    "border_radius": "rounded-2xl sm:rounded-3xl",
+    "bento_grid": "Grid items must be direct children of grid containers. Use col-span-1 md:col-span-4 style classes."
   },
   "components": {
-    "button": "Pill-shaped (rounded-full), px-8 py-4, uppercase tracking-widest text-xs or sm font-medium",
-    "card": "Minimalist, no heavy shadows. 1px solid border in light mode, soft background in dark mode.",
-    "input": "Underline only (border-b) or softly rounded with bg-secondary, clean padding"
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-4 transition-all duration-300",
+      "secondary": "border border-border bg-transparent hover:bg-surface rounded-full px-8 py-4 transition-all duration-300"
+    },
+    "cards": {
+      "base": "bg-surface rounded-3xl p-8 sm:p-12 border border-border/50",
+      "hover": "hover:-translate-y-1 hover:shadow-lg transition-all duration-500"
+    }
   },
-  "media": {
+  "sections": {
     "hero": {
-      "background": "https://images.pexels.com/photos/7750114/pexels-photo-7750114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
-      "description": "Bright spacious beauty salon interior"
+      "layout": "Grid split (text on right, image on left per problem statement). lg:grid-cols-12 gap-12 items-center.",
+      "image": "lg:col-span-5 lg:order-first order-last. Tall aspect ratio, soft rounded corners.",
+      "text": "lg:col-span-7 lg:order-last order-first. H1, subtitle, and buttons.",
+      "trust_indicators": "Flex row with stars (★★★★★), rating 4.9, and '632+ opinii'."
     },
     "about": {
-      "image": "https://images.pexels.com/photos/7195801/pexels-photo-7195801.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=600",
-      "description": "Salon details and backwash chairs"
+      "layout": "Tetris Grid. Large heading, followed by 4 cards (Precyzja wykonania, Komfort wizyty, etc.). Use Lucide icons (fine, elegant strokes)."
     },
-    "services": [
-      {
-        "title": "Zabiegi Beauty",
-        "image": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?crop=entropy&cs=srgb&fm=jpg&w=600&q=85"
-      },
-      {
-        "title": "Pielęgnacja i Regeneracja",
-        "image": "https://images.pexels.com/photos/6663585/pexels-photo-6663585.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
-      },
-      {
-        "title": "Stylizacja",
-        "image": "https://images.pexels.com/photos/18367694/pexels-photo-18367694.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
-      },
-      {
-        "title": "Konsultacje",
-        "image": "https://images.pexels.com/photos/33580449/pexels-photo-33580449.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
-      }
-    ],
-    "gallery": [
-      "https://images.unsplash.com/photo-1643684391140-c5056cfd3436?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
-      "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
-      "https://images.unsplash.com/photo-1709477542149-f4e0e21d590b?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
-      "https://images.unsplash.com/photo-1612475229279-9310cca762a6?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
-      "https://images.pexels.com/photos/9774665/pexels-photo-9774665.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+    "services": {
+      "layout": "Editorial list style. Instead of small cards, use large full-width rows with a bottom border that expand or show subtle hover effects.",
+      "content": "Categories: MANICURE, PRZEDŁUŻANIE, PEDICURE, BRWI I RZĘSY."
+    },
+    "why_clients_return": {
+      "layout": "Grid of 6. grid-cols-1 md:grid-cols-2 lg:grid-cols-3. Minimalist bento cards."
+    },
+    "gallery": {
+      "layout": "Customized Shadcn Tabs for the 6 categories (Natural, French, Extensions, Minimal, Elegant, Pedicure). Underneath, a masonry or simple grid of large images."
+    },
+    "reviews": {
+      "layout": "Large typographic cards. Use react-fast-marquee if possible, or a horizontally scrolling container. Focus on the text 'Dokładnie taki efekt...'"
+    },
+    "booking": {
+      "layout": "Massive central card with deep background (soft nude in light mode, charcoal in dark mode). Center aligned content."
+    },
+    "location": {
+      "layout": "Split layout. Address and amenities (Wi-Fi, Parking, etc.) on one side, Map or elegant exterior photo on the other."
+    },
+    "instagram": {
+      "layout": "Grid of 4 or 5 images, edge-to-edge or gap-4. CTA overlay on hover."
+    },
+    "footer": {
+      "layout": "Minimal. Large 'Moon Beauty Space' wordmark. Simple links."
+    }
+  },
+  "images": {
+    "hero": "https://images.pexels.com/photos/6135675/pexels-photo-6135675.jpeg",
+    "about": "https://images.pexels.com/photos/13068377/pexels-photo-13068377.jpeg",
+    "gallery": {
+      "natural": "https://images.unsplash.com/photo-1630843599725-32ead7671867?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwzfHxuYXR1cmFsJTIwbWFuaWN1cmV8ZW58MHx8fHwxNzgwODQ2ODU3fDA&ixlib=rb-4.1.0&q=85",
+      "french": "https://images.pexels.com/photos/34373403/pexels-photo-34373403.jpeg",
+      "extensions": "https://images.pexels.com/photos/6135680/pexels-photo-6135680.jpeg",
+      "minimal": "https://images.pexels.com/photos/5871915/pexels-photo-5871915.jpeg",
+      "elegant": "https://images.pexels.com/photos/4965824/pexels-photo-4965824.jpeg",
+      "pedicure": "https://images.pexels.com/photos/34930123/pexels-photo-34930123.jpeg"
+    },
+    "instagram": [
+      "https://images.pexels.com/photos/6135675/pexels-photo-6135675.jpeg",
+      "https://images.pexels.com/photos/34373403/pexels-photo-34373403.jpeg",
+      "https://images.pexels.com/photos/5871915/pexels-photo-5871915.jpeg",
+      "https://images.pexels.com/photos/34930123/pexels-photo-34930123.jpeg"
     ]
   },
-  "sections_instructions": {
-    "header": "Sticky nav with glassmorphism (backdrop-blur-md). Includes Language Switcher (PL/EN/UA dropdown) and Theme Toggle. Hide nav links behind hamburger on mobile only.",
-    "hero": "Full height or 90vh. Use background image with overlay bg-black/40 or gradient to transparent to ensure text readability. Heading should use Cormorant Garamond text-5xl to 7xl. Two buttons: Primary for Booksy, secondary (outline/ghost) for Oferta.",
-    "about": "Use a subtle bento grid or asymmetrical 4-card layout for the values. Large typography for 'Poznaj Moon Beauty Space'.",
-    "services": "Grid layout. 1 col mobile, 2 cols tablet, 4 cols desktop. Image on top, elegant title below, simple text link or button. Hovering the card should slightly scale the image.",
-    "why_us": "4 icon blocks. Use lucide-react with thin stroke widths (strokeWidth={1}). Soft background colors for the icon wrappers.",
-    "gallery": "Grid of 6 images. Use masonry style or varying row spans (e.g. col-span-2 row-span-2 for one hero gallery image) to create an artful layout. Smooth hover zoom. Ensure object-cover.",
-    "reviews": "Use a marquee (react-fast-marquee) or simple CSS scroll for testimonial cards. Display 4.9 stars prominently. Minimalist cards.",
-    "booking": "Split layout: Contact form on left, salon info/image on right. Inputs must be accessible, minimal design. Include success state handling. Primary button for submit, outline button for Booksy.",
-    "location": "Darker contrasting section or soft beige. Address details clearly visible. Two buttons: Zadzwoń and Nawigacja.",
-    "footer": "Large brand name 'MOON' at the top/bottom. Links organized cleanly. Neutral/dark colors depending on theme mode."
+  "motion": {
+    "framer_variants": {
+      "container": "variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}",
+      "item": "variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}"
+    },
+    "guidance": "Use whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} heavily for scroll reveals. Keep it subtle, not bouncy."
   },
-  "tech_rules": {
-    "icons": "lucide-react",
-    "animations": "framer-motion",
-    "language": "JSX (React), no TypeScript",
-    "styling": "Tailwind CSS",
-    "i18n": "Use simple React context or translation objects to toggle languages (PL/EN/UA)",
-    "accessibility": "Contrast ratios > 4.5:1. Use semantic HTML. Include data-testid on interactive elements (e.g. data-testid=\"booking-submit-button\")."
-  }
+  "instructions_to_main_agent": [
+    "Use .js/.jsx extensions for all React components, NOT .tsx.",
+    "Inject fonts using Google Fonts imports in index.css (Cormorant Garamond and Manrope).",
+    "Configure tailwind.config.js to include the custom colors listed above under 'extend: colors' using CSS variables to support dark mode.",
+    "Implement Shadcn UI components but override their default borders and radii to match the luxury theme.",
+    "Ensure ALL interactive elements (buttons, links, form inputs, tabs) have a data-testid attribute for testing.",
+    "Do NOT use placeholder images. Only use the URLs provided in this JSON.",
+    "Maintain the Polish text provided in the prompt exactly as requested."
+  ]
 }
