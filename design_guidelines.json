@@ -1,0 +1,103 @@
+{
+  "theme": "Light (with Dark mode support)",
+  "archetype": "5 (Luxury) and 1 (Organic & Earthy) Hybrid",
+  "colors": {
+    "light": {
+      "background": "#FAF9F6",
+      "surface": "#FFFFFF",
+      "text": "#1A1918",
+      "primary": "#B59A7D",
+      "primary_hover": "#A38769",
+      "secondary": "#E8E3DD",
+      "border": "#E5E0DA"
+    },
+    "dark": {
+      "background": "#1A1918",
+      "surface": "#242220",
+      "text": "#FAF9F6",
+      "primary": "#C8B49C",
+      "primary_hover": "#D4C2AE",
+      "secondary": "#302E2B",
+      "border": "#3A3835"
+    }
+  },
+  "typography": {
+    "heading": "Cormorant Garamond",
+    "body": "Manrope",
+    "weights": {
+      "heading": [300, 400, 600],
+      "body": [300, 400, 500]
+    }
+  },
+  "layout": {
+    "spacing_scale": "Generous (p-8, p-12, p-16, p-24, p-32)",
+    "container_max_width": "max-w-7xl",
+    "border_radius": "rounded-2xl for main cards, rounded-full for buttons"
+  },
+  "animations": {
+    "style": "Smooth, elegant, slow reveals",
+    "scroll_reveal": "Framer motion fade-in-up with 0.6s duration and ease-out",
+    "hover": "Subtle scale up (1.02) and image darkening for text contrast"
+  },
+  "components": {
+    "button": "Pill-shaped (rounded-full), px-8 py-4, uppercase tracking-widest text-xs or sm font-medium",
+    "card": "Minimalist, no heavy shadows. 1px solid border in light mode, soft background in dark mode.",
+    "input": "Underline only (border-b) or softly rounded with bg-secondary, clean padding"
+  },
+  "media": {
+    "hero": {
+      "background": "https://images.pexels.com/photos/7750114/pexels-photo-7750114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920",
+      "description": "Bright spacious beauty salon interior"
+    },
+    "about": {
+      "image": "https://images.pexels.com/photos/7195801/pexels-photo-7195801.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=600",
+      "description": "Salon details and backwash chairs"
+    },
+    "services": [
+      {
+        "title": "Zabiegi Beauty",
+        "image": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?crop=entropy&cs=srgb&fm=jpg&w=600&q=85"
+      },
+      {
+        "title": "Pielęgnacja i Regeneracja",
+        "image": "https://images.pexels.com/photos/6663585/pexels-photo-6663585.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+      },
+      {
+        "title": "Stylizacja",
+        "image": "https://images.pexels.com/photos/18367694/pexels-photo-18367694.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+      },
+      {
+        "title": "Konsultacje",
+        "image": "https://images.pexels.com/photos/33580449/pexels-photo-33580449.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+      }
+    ],
+    "gallery": [
+      "https://images.unsplash.com/photo-1643684391140-c5056cfd3436?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
+      "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
+      "https://images.unsplash.com/photo-1709477542149-f4e0e21d590b?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
+      "https://images.unsplash.com/photo-1612475229279-9310cca762a6?crop=entropy&cs=srgb&fm=jpg&w=600&q=85",
+      "https://images.pexels.com/photos/9774665/pexels-photo-9774665.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+    ]
+  },
+  "sections_instructions": {
+    "header": "Sticky nav with glassmorphism (backdrop-blur-md). Includes Language Switcher (PL/EN/UA dropdown) and Theme Toggle. Hide nav links behind hamburger on mobile only.",
+    "hero": "Full height or 90vh. Use background image with overlay bg-black/40 or gradient to transparent to ensure text readability. Heading should use Cormorant Garamond text-5xl to 7xl. Two buttons: Primary for Booksy, secondary (outline/ghost) for Oferta.",
+    "about": "Use a subtle bento grid or asymmetrical 4-card layout for the values. Large typography for 'Poznaj Moon Beauty Space'.",
+    "services": "Grid layout. 1 col mobile, 2 cols tablet, 4 cols desktop. Image on top, elegant title below, simple text link or button. Hovering the card should slightly scale the image.",
+    "why_us": "4 icon blocks. Use lucide-react with thin stroke widths (strokeWidth={1}). Soft background colors for the icon wrappers.",
+    "gallery": "Grid of 6 images. Use masonry style or varying row spans (e.g. col-span-2 row-span-2 for one hero gallery image) to create an artful layout. Smooth hover zoom. Ensure object-cover.",
+    "reviews": "Use a marquee (react-fast-marquee) or simple CSS scroll for testimonial cards. Display 4.9 stars prominently. Minimalist cards.",
+    "booking": "Split layout: Contact form on left, salon info/image on right. Inputs must be accessible, minimal design. Include success state handling. Primary button for submit, outline button for Booksy.",
+    "location": "Darker contrasting section or soft beige. Address details clearly visible. Two buttons: Zadzwoń and Nawigacja.",
+    "footer": "Large brand name 'MOON' at the top/bottom. Links organized cleanly. Neutral/dark colors depending on theme mode."
+  },
+  "tech_rules": {
+    "icons": "lucide-react",
+    "animations": "framer-motion",
+    "language": "JSX (React), no TypeScript",
+    "styling": "Tailwind CSS",
+    "i18n": "Use simple React context or translation objects to toggle languages (PL/EN/UA)",
+    "accessibility": "Contrast ratios > 4.5:1. Use semantic HTML. Include data-testid on interactive elements (e.g. data-testid=\"booking-submit-button\")."
+  }
+}
