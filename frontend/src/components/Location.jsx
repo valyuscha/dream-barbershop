@@ -19,7 +19,7 @@ const InfoItem = ({ icon: Icon, label, children, delay, testId }) => (
         <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
           {label}
         </p>
-        <div className="text-base sm:text-lg mt-1 text-foreground/90">{children}</div>
+        <div className="text-sm sm:text-base mt-1 text-foreground/90">{children}</div>
       </div>
     </div>
   </Reveal>
