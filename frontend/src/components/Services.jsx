@@ -12,7 +12,7 @@ export const Services = () => {
     <section
       id="services"
       data-testid="services-section"
-      className="py-24 sm:py-32 bg-secondary/40"
+      className="py-16 sm:py-32 bg-secondary/40"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <SectionHeader
@@ -22,51 +22,52 @@ export const Services = () => {
           testId="services-header"
         />
 
-        <div className="mt-14 sm:mt-20 border-t border-border/70">
+        <div className="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {t.services.categories.map((cat, ci) => (
-            <Reveal key={ci} delay={ci * 0.05}>
-              <div
+            <Reveal key={ci} delay={ci * 0.08}>
+              <a
+                href={SITE.booksyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-testid={`service-category-${ci}`}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-10 sm:py-12 border-b border-border/70"
+                className="group block h-full rounded-3xl bg-card border border-border/70 p-6 sm:p-8 hover:border-primary/50 hover:shadow-lg transition-all duration-300"
               >
-                <div className="lg:col-span-4">
+                <div className="flex items-start justify-between gap-3 mb-4">
                   <span className="text-xs tracking-luxury uppercase text-primary">
                     {`0${ci + 1}`}
                   </span>
-                  <h3 className="mt-2 font-display text-3xl sm:text-4xl leading-tight">
-                    {cat.label}
-                  </h3>
+                  <ArrowUpRight
+                    className="h-5 w-5 shrink-0 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    strokeWidth={1.4}
+                  />
                 </div>
-                <ul className="lg:col-span-8">
+                <h3 className="font-display text-3xl sm:text-4xl leading-tight mb-6">
+                  {cat.label}
+                </h3>
+                <ul className="space-y-4">
                   {cat.items.map((item, ii) => (
                     <li
                       key={ii}
                       data-testid={`service-item-${ci}-${ii}`}
-                      className="group flex items-center justify-between gap-4 py-4 border-b border-border/50 last:border-0"
+                      className="pb-4 border-b border-border/50 last:border-0 last:pb-0"
                     >
-                      <div>
-                        <p className="font-display text-xl sm:text-2xl leading-tight">
-                          {item.name}
+                      <p className="font-display text-lg sm:text-xl leading-tight mb-1">
+                        {item.name}
+                      </p>
+                      {item.desc && (
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {item.desc}
                         </p>
-                        {item.desc && (
-                          <p className="text-sm text-muted-foreground mt-1 max-w-md">
-                            {item.desc}
-                          </p>
-                        )}
-                      </div>
-                      <ArrowUpRight
-                        className="h-5 w-5 shrink-0 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        strokeWidth={1.4}
-                      />
+                      )}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </a>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.2}>
           <div className="mt-12 sm:mt-16 flex justify-center">
             <a
               href={SITE.booksyUrl}

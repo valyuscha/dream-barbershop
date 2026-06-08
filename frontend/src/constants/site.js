@@ -7,10 +7,11 @@ export const SITE = {
   address: "Długa 47/1, 31-147 Kraków",
   hoursDaily: "09:00 – 21:00",
   mapsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Długa+47,+31-147+Kraków",
-  booksyUrl: "https://booksy.com/",
-  instagramUrl: "https://www.instagram.com/",
-  instagramHandle: "@moonbeautyspace",
+    "https://www.google.com/maps/search/?api=1&query=Moon+Beauty+Space+Kraków",
+  booksyUrl: "https://booksy.com/pl-pl/225921_moon-beauty-space_paznokcie_8820_krakow?do=invite&_branch_match_id=1589580820330806395&utm_medium=profile_share_from_boost&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs%2FVjyjwSvcyi3AJNkiyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAFJsu4TwAAAA%3D#ba_s=seo",
+  instagramUrl: "https://www.instagram.com/moonbeautyspace.krk/",
+  instagramHandle: "@moonbeautyspace.krk",
+  facebookUrl: "https://www.facebook.com/NailMoonspace?mibextid=wwXIfr&rdid=ccQPI9UTSlcOik8Y&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17NjWM7b6i%2F%3Fmibextid%3DwwXIfr",
 };
 
 // Hero — female manicurist at work with a client in a modern salon (portrait)
@@ -28,45 +29,45 @@ export const BOOKING_IMAGE =
 // Gallery — realistic nail portfolio grouped by tab category
 export const GALLERY = {
   natural: [
-    "https://images.unsplash.com/photo-1630843599725-32ead7671867?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
-    "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
-    "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
+    "/natural-1.jpeg",
+    "/natural-2.jpeg",
+    "/natural-3.jpeg",
   ],
   french: [
-    "https://images.pexels.com/photos/34373403/pexels-photo-34373403.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.unsplash.com/photo-1612475229279-9310cca762a6?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
-    "https://images.unsplash.com/photo-1643684391140-c5056cfd3436?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
+    "/french-1.jpeg",
+    "/french-2.jpeg",
+    "/french-3.jpeg",
   ],
   extensions: [
-    "https://images.unsplash.com/photo-1643684391140-c5056cfd3436?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
-    "https://images.pexels.com/photos/6663585/pexels-photo-6663585.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
+    "/extencials-1.jpeg",
+    "/extencials-2.jpeg",
+    "/extencials-3.jpeg",
   ],
   minimal: [
-    "https://images.pexels.com/photos/5871915/pexels-photo-5871915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.unsplash.com/photo-1709477542149-f4e0e21d590b?crop=entropy&cs=srgb&fm=jpg&w=900&q=85",
-    "https://images.pexels.com/photos/18367694/pexels-photo-18367694.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
+    "/minimal-1.jpeg",
+    "/minimal-2.jpeg",
+    "/minimal-3.jpeg",
   ],
   elegant: [
-    "https://images.pexels.com/photos/4965824/pexels-photo-4965824.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.pexels.com/photos/9774665/pexels-photo-9774665.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.pexels.com/photos/33580449/pexels-photo-33580449.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
+    "/elegant-1.jpeg",
+    "/elegant-2.jpeg",
+    "/elegant-3.jpeg",
   ],
   pedicure: [
-    "https://images.pexels.com/photos/34930123/pexels-photo-34930123.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.pexels.com/photos/4677849/pexels-photo-4677849.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
-    "https://images.pexels.com/photos/4677846/pexels-photo-4677846.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900",
+    "/pedicure-1.jpeg",
+    "/pedicure-2.jpeg",
+    "/pedicure-3.jpeg",
   ],
 };
 
 // Instagram-style grid
 export const INSTAGRAM_IMAGES = [
-  "https://images.pexels.com/photos/6135675/pexels-photo-6135675.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=700",
-  "https://images.pexels.com/photos/34373403/pexels-photo-34373403.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=700",
-  "https://images.pexels.com/photos/5871915/pexels-photo-5871915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=700",
-  "https://images.pexels.com/photos/34930123/pexels-photo-34930123.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=700",
-  "https://images.pexels.com/photos/4965824/pexels-photo-4965824.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=700",
-  "https://images.unsplash.com/photo-1612475229279-9310cca762a6?crop=entropy&cs=srgb&fm=jpg&w=700&q=85",
+  "/instagram-1.jpeg",
+  "/instagram-2.jpeg",
+  "/instagram-3.jpeg",
+  "/instagram-4.jpeg",
+  "/instagram-5.jpeg",
+  "/instagram-6.jpeg",
 ];
 
 // Gallery tab definitions (brand-style labels, language independent)

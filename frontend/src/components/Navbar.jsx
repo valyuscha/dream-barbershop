@@ -78,7 +78,7 @@ export const Navbar = () => {
           <button
             onClick={() => setOpen((v) => !v)}
             data-testid="mobile-menu-toggle"
-            className="lg:hidden inline-flex items-center justify-center h-9 w-9 rounded-full border border-border/70"
+            className="lg:hidden inline-flex items-center justify-center h-9 w-9 rounded-full bg-secondary/50 hover:bg-secondary border border-border/70 transition-colors"
             aria-label="Menu"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}

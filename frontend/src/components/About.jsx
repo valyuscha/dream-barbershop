@@ -1,19 +1,34 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Reveal from "@/components/Reveal";
-import { Sparkles, HeartHandshake, Gem, Award } from "lucide-react";
-import { ABOUT_IMAGE } from "@/constants/site";
+import { Sparkles, HeartHandshake, Gem, Award, ChevronsRight } from "lucide-react";
 
 const ICONS = [HeartHandshake, Sparkles, Gem, Award];
+
+const ScrollHint = ({ label }) => (
+  <div className="flex items-center justify-center gap-2 mt-5 text-muted-foreground">
+    <span className="text-xs uppercase tracking-luxury font-semibold">
+      {label}
+    </span>
+    <motion.span
+      animate={{ x: [0, 6, 0] }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <ChevronsRight className="w-4 h-4" strokeWidth={2} />
+    </motion.span>
+  </div>
+);
+const ABOUT_IMAGE = "/aboutUs.png";
 
 export const About = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="about" data-testid="about-section" className="py-24 sm:py-32">
+    <section id="about" data-testid="about-section" className="py-16 sm:py-32">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Left: copy */}
-        <div className="lg:col-span-7 order-2 lg:order-1">
+        <div className="lg:col-span-7">
           <Reveal>
             <span className="text-xs tracking-luxury uppercase text-primary">{t.about.eyebrow}</span>
           </Reveal>
@@ -38,7 +53,8 @@ export const About = () => {
             </p>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Desktop: values grid below text */}
+          <div className="hidden sm:grid mt-10 grid-cols-1 sm:grid-cols-2 gap-4">
             {t.about.values.map((v, i) => {
               const Icon = ICONS[i % ICONS.length];
               return (
@@ -61,27 +77,54 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Right: image collage */}
-        <div className="lg:col-span-5 order-1 lg:order-2">
-          <Reveal delay={0.1}>
-            <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden">
-              <img
-                src={ABOUT_IMAGE}
-                alt="Salon details"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute -bottom-px left-0 right-0 bg-gradient-to-t from-background/40 to-transparent h-1/3" />
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-6 rounded-2xl border border-border/70 bg-card p-6">
-              <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">Moon Beauty Space</p>
-              <p className="font-display text-2xl mt-2 leading-snug">
-                &ldquo;Twoja chwila, nasza dbałość o każdy detal.&rdquo;
-              </p>
-            </div>
-          </Reveal>
+        {/* Right: image and quote block - horizontal on mobile */}
+        <div className="lg:col-span-5">
+          <div className="flex flex-col sm:flex-row gap-4 lg:gap-0">
+            <Reveal delay={0.1} className="sm:flex-1">
+              <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden">
+                <img
+                  src={ABOUT_IMAGE}
+                  alt="Salon details"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute -bottom-px left-0 right-0 bg-gradient-to-t from-background/40 to-transparent h-1/3" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.2} className="sm:flex-1">
+              <div className="lg:mt-6 rounded-2xl border border-border/70 bg-card p-6 h-full flex flex-col justify-center">
+                <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">Moon Beauty Space</p>
+                <p className="font-display text-2xl mt-2 leading-snug">
+                  &ldquo;Twoja chwila, nasza dbałość o każdy detal.&rdquo;
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Mobile: values carousel - full width on mobile only */}
+        <div className="sm:hidden lg:col-span-12 order-3 -mx-5">
+          <div className="flex gap-4 px-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1">
+            {t.about.values.map((v, i) => {
+              const Icon = ICONS[i % ICONS.length];
+              return (
+                <div
+                  key={i}
+                  data-testid={`about-value-${i}`}
+                  className="snap-center shrink-0 max-w-[280px] group flex flex-col items-start gap-4 rounded-2xl border border-border/70 bg-card hover:bg-secondary/50 transition-colors p-5"
+                >
+                  <div className="h-10 w-10 shrink-0 rounded-full bg-secondary text-primary flex items-center justify-center">
+                    <Icon className="h-5 w-5" strokeWidth={1.4} />
+                  </div>
+                  <div>
+                    <p className="font-display text-xl leading-tight">{v.title}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <ScrollHint label="Przesuń" />
         </div>
       </div>
     </section>

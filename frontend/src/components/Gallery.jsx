@@ -2,18 +2,35 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
+import { ArrowUpRight, ChevronsRight } from "lucide-react";
 import { GALLERY, GALLERY_TABS } from "@/constants/site";
+import { SITE } from "@/constants/site";
+
+const ScrollHint = ({ label }) => (
+  <div className="flex items-center justify-center gap-2 mt-5 text-muted-foreground">
+    <span className="text-xs uppercase tracking-luxury font-semibold">
+      {label}
+    </span>
+    <motion.span
+      animate={{ x: [0, 6, 0] }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <ChevronsRight className="w-4 h-4" strokeWidth={2} />
+    </motion.span>
+  </div>
+);
 
 export const Gallery = () => {
   const { t } = useLanguage();
-  const [active, setActive] = useState(GALLERY_TABS[0].id);
+  const [active, setActive] = useState("minimal");
   const images = GALLERY[active] || [];
 
   return (
     <section
       id="gallery"
       data-testid="gallery-section"
-      className="py-24 sm:py-32 bg-secondary/40"
+      className="py-16 sm:py-32 bg-secondary/40"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <SectionHeader
@@ -44,7 +61,37 @@ export const Gallery = () => {
           ))}
         </div>
 
-        {/* Images */}
+        {/* Mobile/Tablet: horizontal snap carousel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden mt-10"
+          >
+            <div className="flex gap-4 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-1">
+              {images.map((src, i) => (
+                <figure
+                  key={src}
+                  data-testid={`gallery-item-${active}-${i}`}
+                  className="snap-center shrink-0 w-[82%] sm:w-[70%] aspect-[3/4] relative overflow-hidden rounded-3xl bg-card"
+                >
+                  <img
+                    src={src}
+                    alt={`Moon Beauty Space — ${active} ${i + 1}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                </figure>
+              ))}
+            </div>
+            <ScrollHint label={t.gallery.scrollHint || "Przesuń"} />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Desktop: grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -52,15 +99,13 @@ export const Gallery = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5"
+            className="hidden md:grid mt-10 sm:mt-14 grid-cols-3 gap-4 sm:gap-5"
           >
             {images.map((src, i) => (
               <figure
                 key={src}
                 data-testid={`gallery-item-${active}-${i}`}
-                className={`group relative overflow-hidden rounded-3xl bg-card ${
-                  i === 0 ? "sm:col-span-2 sm:row-span-2 aspect-[4/3] sm:aspect-auto" : "aspect-[4/5]"
-                }`}
+                className="group relative overflow-hidden rounded-3xl bg-card aspect-[3/4]"
               >
                 <img
                   src={src}
@@ -73,6 +118,25 @@ export const Gallery = () => {
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {/* View All Portfolio Button */}
+        <Reveal delay={0.2}>
+          <div className="mt-12 sm:mt-16 flex justify-center">
+            <a
+              href={SITE.booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="gallery-view-all"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+            >
+              {t.gallery.viewAll || "Zobacz całe portfolio"}
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={1.5}
+              />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

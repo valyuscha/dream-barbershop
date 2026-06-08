@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Instagram, Phone, MapPin } from "lucide-react";
+import { Instagram, Phone, MapPin, Facebook } from "lucide-react";
 import { SITE } from "@/constants/site";
 
 const navItems = [
@@ -86,6 +86,18 @@ export const Footer = () => {
                 >
                   <Instagram className="h-3.5 w-3.5" strokeWidth={1.5} />
                   Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="footer-facebook"
+                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <Facebook className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  Facebook
                 </a>
               </li>
               <li>

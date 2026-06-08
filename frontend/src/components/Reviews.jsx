@@ -11,7 +11,7 @@ export const Reviews = () => {
   const loop = [...items, ...items];
 
   return (
-    <section id="reviews" data-testid="reviews-section" className="py-24 sm:py-32">
+    <section id="reviews" data-testid="reviews-section" className="py-16 sm:py-32">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <SectionHeader eyebrow={t.reviews.eyebrow} title={t.reviews.title} testId="reviews-header" />
 

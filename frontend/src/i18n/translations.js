@@ -85,6 +85,8 @@ export const translations = {
       eyebrow: "Realizacje",
       title: "Nasze realizacje",
       subtitle: "Wybrane stylizacje wykonane w Moon Beauty Space.",
+      viewAll: "Zobacz całe portfolio",
+      scrollHint: "Przesuń",
     },
     reviews: {
       eyebrow: "Opinie",
@@ -109,7 +111,7 @@ export const translations = {
       date: "Preferowana data",
       message: "Wiadomość",
       submit: "Umów wizytę",
-      booksy: "Rezerwuj przez Booksy",
+      booksy: "Booksy",
       call: "Zadzwoń",
       success: {
         title: "Dziękujemy!",
@@ -235,6 +237,8 @@ export const translations = {
       eyebrow: "Portfolio",
       title: "Our work",
       subtitle: "Selected styles created at Moon Beauty Space.",
+      viewAll: "See full portfolio",
+      scrollHint: "Scroll",
     },
     reviews: {
       eyebrow: "Reviews",
@@ -259,7 +263,7 @@ export const translations = {
       date: "Preferred date",
       message: "Message",
       submit: "Book a visit",
-      booksy: "Book via Booksy",
+      booksy: "Booksy",
       call: "Call us",
       success: {
         title: "Thank you!",
@@ -385,6 +389,8 @@ export const translations = {
       eyebrow: "Портфоліо",
       title: "Наші роботи",
       subtitle: "Обрані стилізації, виконані в Moon Beauty Space.",
+      viewAll: "Переглянути повне портфоліо",
+      scrollHint: "Прокрутіть",
     },
     reviews: {
       eyebrow: "Відгуки",
@@ -409,7 +415,7 @@ export const translations = {
       date: "Бажана дата",
       message: "Повідомлення",
       submit: "Записатися",
-      booksy: "Записатися через Booksy",
+      booksy: "Booksy",
       call: "Зателефонувати",
       success: {
         title: "Дякуємо!",
