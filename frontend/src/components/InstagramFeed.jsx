@@ -52,7 +52,7 @@ export const InstagramFeed = () => {
                   src={src}
                   alt={`Moon Beauty Space Instagram ${i + 1}`}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-500">
                   <Instagram
@@ -81,7 +81,7 @@ export const InstagramFeed = () => {
                   src={src}
                   alt={`Moon Beauty Space Instagram ${i + 1}`}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-500">
                   <Instagram
