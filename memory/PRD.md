@@ -53,6 +53,12 @@ Re-positioned the site from a generic beauty salon to a premium **nail studio** 
 - Location: `object-contain` on dark panel so full MOON logo is always visible (was cropped).
 - Performance: optimized all local images via Pillow — 9.67MB → 4.11MB; PNG photos converted to JPG (hero.jpg, aboutUs.jpg) with refs updated.
 
+## Layout tweaks + Booking DB re-wire (2026-06-08)
+- **Booking form RE-WIRED to backend**: `onSubmit` was only `console.log` + fake `setTimeout` (broken by GitHub sync). Now POSTs to `${API}/bookings` via axios with proper error state. Verified end-to-end (curl insert + list OK).
+- **Booking section**: removed the right-side contacts info panel (address/hours/phone) per owner request; form is now centered (`max-w-3xl mx-auto`).
+- **Location section**: split image and info into two separate adaptive cards (grid w/ gap). Image card uses `aspect-[4/3] sm:aspect-[16/9] lg:min-h-[520px]` + `object-contain` so the MOON logo stays fully visible and adapts across all screens.
+- **About section**: right image+quote column constrained on sm/tablet widths (`w-full sm:max-w-md sm:mx-auto lg:max-w-none`) so the block no longer fills excessive space below `lg`.
+
 ## Prioritized Backlog
 ### P1
 - Replace generic `https://booksy.com/` with the salon's real Booksy page (constant `SITE.booksyUrl`)

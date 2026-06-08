@@ -12,29 +12,28 @@ export const Location = () => {
   return (
     <section id="location" data-testid="location-section" className="py-16 sm:py-32">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="rounded-[2rem] overflow-hidden border border-border/70 bg-card">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Map / exterior preview */}
-            <a
-              href={SITE.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="location-map-link"
-              className="group relative min-h-[280px] lg:min-h-[520px] block overflow-hidden bg-[#100f0d]"
-            >
-              <img
-                src={LOCATION_IMAGE}
-                alt="Moon Beauty Space — Kraków"
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute bottom-6 right-6 h-12 w-12 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
-                <Navigation className="h-5 w-5" strokeWidth={1.5} />
-              </div>
-            </a>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          {/* Map / exterior preview — separate adaptive image */}
+          <a
+            href={SITE.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="location-map-link"
+            className="group relative block overflow-hidden rounded-[2rem] border border-border/70 bg-[#100f0d] aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:min-h-[520px]"
+          >
+            <img
+              src={LOCATION_IMAGE}
+              alt="Moon Beauty Space — Kraków"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute bottom-6 right-6 h-12 w-12 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+              <Navigation className="h-5 w-5" strokeWidth={1.5} />
+            </div>
+          </a>
 
-            {/* Info */}
-            <div className="p-8 sm:p-12 flex flex-col gap-8 justify-center">
+          {/* Info */}
+          <div className="rounded-[2rem] border border-border/70 bg-card p-8 sm:p-12 flex flex-col gap-8 justify-center">
               <Reveal>
                 <span className="text-xs tracking-luxury uppercase text-primary">
                   {t.location.eyebrow}
@@ -143,7 +142,6 @@ export const Location = () => {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

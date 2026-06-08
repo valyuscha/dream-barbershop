@@ -78,7 +78,7 @@ export const About = () => {
         </div>
 
         {/* Right: image and quote block - clean vertical stack */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 w-full sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0">
           <Reveal delay={0.1}>
             <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden">
               <img

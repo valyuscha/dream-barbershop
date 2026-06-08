@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import { Loader2, CheckCircle2, ArrowRight, ExternalLink, Phone } from "lucide-react";
-import { SITE, BOOKING_IMAGE } from "@/constants/site";
+import { SITE } from "@/constants/site";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -29,18 +29,14 @@ export const Booking = () => {
     if (!form.name || !form.phone || !form.service) return;
     setStatus("loading");
     setErrorMsg("");
-    
-    // Log the booking data to console
-    console.log("Booking data:", {
-      ...form,
-      language: lang,
-      timestamp: new Date().toISOString(),
-    });
-    
-    // Simulate a short delay for better UX
-    setTimeout(() => {
+
+    try {
+      await axios.post(`${API}/bookings`, { ...form, language: lang });
       setStatus("success");
-    }, 1000);
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err?.response?.data?.detail || "");
+    }
   };
 
   const reset = () => {
@@ -64,9 +60,8 @@ export const Booking = () => {
           testId="booking-header"
         />
 
-        <div className="mt-14 sm:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Form */}
-          <div className="lg:col-span-7">
+        <div className="mt-14 sm:mt-20 max-w-3xl mx-auto">
+          <div>
             <Reveal>
               <div className="rounded-3xl bg-card border border-border/70 p-6 sm:p-10">
                 {status === "success" ? (
@@ -222,48 +217,6 @@ export const Booking = () => {
                     </div>
                   </form>
                 )}
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right info panel */}
-          <div className="lg:col-span-5">
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl overflow-hidden border border-border/70 bg-card h-full flex flex-col">
-                <div className="h-44 sm:h-52 relative shrink-0">
-                  <img
-                    src={BOOKING_IMAGE}
-                    alt="Moon Beauty Space"
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-                <div className="p-6 sm:p-8 space-y-5">
-                  <div>
-                    <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
-                      {t.location.addressLabel}
-                    </p>
-                    <p className="font-display text-xl mt-1">{SITE.address}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
-                      {t.location.hoursLabel}
-                    </p>
-                    <p className="text-base mt-1">{t.location.hours}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
-                      {t.location.phoneLabel}
-                    </p>
-                    <a
-                      href={`tel:${SITE.phoneTel}`}
-                      data-testid="booking-info-phone"
-                      className="text-base mt-1 inline-block hover:text-primary transition-colors"
-                    >
-                      {SITE.phone}
-                    </a>
-                  </div>
-                </div>
               </div>
             </Reveal>
           </div>
