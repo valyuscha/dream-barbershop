@@ -7,7 +7,7 @@ import { SITE } from "@/constants/site";
 const AMENITY_ICONS = [Wifi, Car, CreditCard, Heart];
 
 const InfoItem = ({ icon: Icon, label, children, delay, testId }) => (
-  <Reveal delay={delay}>
+  <Reveal delay={delay} className="flex-1 min-w-[150px]">
     <div
       data-testid={testId}
       className="flex flex-col items-center text-center gap-3 px-2"
@@ -44,7 +44,7 @@ export const Location = () => {
             </Reveal>
 
             {/* Info trio */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 max-w-3xl mx-auto">
+            <div className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-8 max-w-3xl mx-auto">
               <InfoItem icon={MapPin} label={t.location.addressLabel} delay={0.15} testId="location-address">
                 {SITE.address}
               </InfoItem>
