@@ -1,4 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -122,7 +124,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging — moved to top of file
+# Serve frontend static files
+FRONTEND_BUILD = Path(__file__).parent.parent / "frontend" / "build"
+
+if FRONTEND_BUILD.exists():
+    # Serve static assets (JS, CSS, images)
+    app.mount("/static", StaticFiles(directory=str(FRONTEND_BUILD / "static")), name="static")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        """Serve the React SPA for any non-API route."""
+        # Try to serve the exact file first
+        file_path = FRONTEND_BUILD / full_path
+        if full_path and file_path.exists() and file_path.is_file():
+            return FileResponse(str(file_path))
+        # Otherwise serve index.html for client-side routing
+        return FileResponse(str(FRONTEND_BUILD / "index.html"))
 
 
 @app.on_event("shutdown")
