@@ -129,19 +129,17 @@ FRONTEND_BUILD = Path(__file__).parent.parent / "frontend" / "build"
 logger.info("Looking for frontend build at: %s (exists: %s)", FRONTEND_BUILD, FRONTEND_BUILD.exists())
 
 if FRONTEND_BUILD.exists():
-    from starlette.staticfiles import StaticFiles as StarletteStaticFiles
-    from starlette.exceptions import HTTPException as StarletteHTTPException
+    # List files for debugging
+    import os as _os
+    build_files = _os.listdir(str(FRONTEND_BUILD))
+    logger.info("Frontend build contents: %s", build_files)
 
-    class SPAStaticFiles(StarletteStaticFiles):
-        async def get_response(self, path: str, scope):
-            try:
-                return await super().get_response(path, scope)
-            except StarletteHTTPException as ex:
-                if ex.status_code == 404:
-                    return await super().get_response("index.html", scope)
-                raise
-
-    app.mount("/", SPAStaticFiles(directory=str(FRONTEND_BUILD), html=True), name="frontend")
+    @app.get("/")
+    async def serve_index():
+        index = FRONTEND_BUILD / "index.html"
+        if index.exists():
+            return FileResponse(str(index))
+        return {"error": "index.html not found"}
 
 
 @app.on_event("shutdown")
