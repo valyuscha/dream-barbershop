@@ -126,10 +126,13 @@ app.add_middleware(
 
 # Serve frontend static files
 FRONTEND_BUILD = Path(__file__).parent.parent / "frontend" / "build"
+logger.info("Looking for frontend build at: %s (exists: %s)", FRONTEND_BUILD, FRONTEND_BUILD.exists())
 
 if FRONTEND_BUILD.exists():
     # Serve static assets (JS, CSS, images)
-    app.mount("/static", StaticFiles(directory=str(FRONTEND_BUILD / "static")), name="static")
+    static_dir = FRONTEND_BUILD / "static"
+    if static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):
@@ -140,6 +143,10 @@ if FRONTEND_BUILD.exists():
             return FileResponse(str(file_path))
         # Otherwise serve index.html for client-side routing
         return FileResponse(str(FRONTEND_BUILD / "index.html"))
+else:
+    @app.get("/")
+    async def root_fallback():
+        return {"error": "Frontend build not found", "path": str(FRONTEND_BUILD)}
 
 
 @app.on_event("shutdown")
