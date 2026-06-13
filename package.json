@@ -1,0 +1,11 @@
+{
+  "name": "moon-beauty-space",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
