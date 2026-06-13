@@ -129,7 +129,19 @@ FRONTEND_BUILD = Path(__file__).parent.parent / "frontend" / "build"
 logger.info("Looking for frontend build at: %s (exists: %s)", FRONTEND_BUILD, FRONTEND_BUILD.exists())
 
 if FRONTEND_BUILD.exists():
-    app.mount("/", StaticFiles(directory=str(FRONTEND_BUILD), html=True), name="frontend")
+    from starlette.staticfiles import StaticFiles as StarletteStaticFiles
+    from starlette.exceptions import HTTPException as StarletteHTTPException
+
+    class SPAStaticFiles(StarletteStaticFiles):
+        async def get_response(self, path: str, scope):
+            try:
+                return await super().get_response(path, scope)
+            except StarletteHTTPException as ex:
+                if ex.status_code == 404:
+                    return await super().get_response("index.html", scope)
+                raise
+
+    app.mount("/", SPAStaticFiles(directory=str(FRONTEND_BUILD), html=True), name="frontend")
 
 
 @app.on_event("shutdown")
