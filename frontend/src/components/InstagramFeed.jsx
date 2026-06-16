@@ -28,7 +28,7 @@ export const InstagramFeed = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="instagram-cta"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+              className="group inline-flex h-[54px] items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-9 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5"
             >
               <Instagram className="h-4 w-4" strokeWidth={1.5} />
               {t.instagram.cta}
@@ -42,7 +42,7 @@ export const InstagramFeed = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="facebook-cta"
-              className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 hover:bg-foreground hover:text-background px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+              className="group inline-flex h-[54px] items-center gap-2 rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 px-9 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 hover:-translate-y-0.5"
             >
               <Facebook className="h-4 w-4" strokeWidth={1.5} />
               {t.instagram.ctaFacebook}

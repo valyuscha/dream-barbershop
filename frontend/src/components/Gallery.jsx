@@ -7,6 +7,25 @@ import { ArrowUpRight, ChevronsRight } from "lucide-react";
 import { GALLERY, GALLERY_TABS } from "@/constants/site";
 import { SITE } from "@/constants/site";
 
+// Image with premium loading state (warm shimmer until loaded)
+const GalleryImage = ({ src, alt }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && <div className="absolute inset-0 img-shimmer" aria-hidden />}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover img-rich ease-premium transition-all [transition-duration:1200ms] group-hover:scale-[1.07] ${
+          loaded ? "opacity-100 blur-0" : "opacity-0 blur-md"
+        }`}
+      />
+    </>
+  );
+};
+
 const ScrollHint = ({ label }) => (
   <div className="flex items-center justify-center gap-2 mt-5 text-muted-foreground">
     <span className="text-xs uppercase tracking-luxury font-semibold">
@@ -50,10 +69,10 @@ export const Gallery = () => {
               key={tab.id}
               data-testid={`gallery-tab-${tab.id}`}
               onClick={() => setActive(tab.id)}
-              className={`rounded-full px-5 py-2.5 text-xs tracking-luxury uppercase transition-colors border ${
+              className={`rounded-full px-5 py-2.5 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 border ${
                 active === tab.id
-                  ? "bg-foreground text-background border-foreground"
-                  : "border-border/70 text-foreground/70 hover:text-foreground hover:border-foreground/50"
+                  ? "bg-foreground text-background border-foreground shadow-soft"
+                  : "border-border text-foreground/65 hover:text-foreground hover:border-primary/40 hover:bg-primary/5"
               }`}
             >
               {t.gallery.tabs?.[tab.id] || tab.label}
@@ -76,14 +95,9 @@ export const Gallery = () => {
                 <figure
                   key={src}
                   data-testid={`gallery-item-${active}-${i}`}
-                  className="snap-center shrink-0 w-[82%] sm:w-[70%] aspect-[3/4] relative overflow-hidden rounded-3xl bg-card"
+                  className="group snap-center shrink-0 w-[82%] sm:w-[70%] aspect-[3/4] relative overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-inset ring-foreground/[0.06]"
                 >
-                  <img
-                    src={src}
-                    alt={`Dream Barbershop — ${active} ${i + 1}`}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
+                  <GalleryImage src={src} alt={`Dream Barbershop — ${active} ${i + 1}`} />
                 </figure>
               ))}
             </div>
@@ -91,30 +105,35 @@ export const Gallery = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Desktop: grid */}
+        {/* Desktop: masonry-rhythm grid (staggered columns, aligned rows) */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:grid mt-10 sm:mt-14 grid-cols-3 gap-4 sm:gap-5"
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.3 } }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+            }}
+            className="hidden md:grid mt-10 sm:mt-14 grid-cols-3 gap-5 sm:gap-6 items-start"
           >
             {images.map((src, i) => (
-              <figure
+              <motion.figure
                 key={src}
                 data-testid={`gallery-item-${active}-${i}`}
-                className="group relative overflow-hidden rounded-3xl bg-card aspect-[3/4]"
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+                }}
+                className={`group relative overflow-hidden rounded-[1.75rem] bg-card aspect-[3/4] shadow-soft ring-1 ring-inset ring-foreground/[0.06] ${
+                  i % 3 === 1 ? "lg:mt-10" : ""
+                }`}
               >
-                <img
-                  src={src}
-                  alt={`Dream Barbershop — ${active} ${i + 1}`}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/15 transition-colors duration-500" />
-              </figure>
+                <GalleryImage src={src} alt={`Dream Barbershop — ${active} ${i + 1}`} />
+                {/* Cinematic bottom falloff, deepens on hover */}
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/70 to-transparent opacity-0 group-hover:opacity-100 ease-premium transition-opacity duration-500" />
+              </motion.figure>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -127,7 +146,7 @@ export const Gallery = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="gallery-view-all"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+              className="group inline-flex h-[54px] items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-9 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5"
             >
               {t.gallery.viewAll || "Zobacz więcej"}
               <ArrowUpRight

@@ -30,18 +30,21 @@ export const Services = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid={`service-category-${ci}`}
-                className="group block h-full rounded-3xl bg-card border border-border/70 p-6 sm:p-8 hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                className="group card-premium hover-lift border-warm-hover block h-full rounded-3xl border border-border p-7 sm:p-9 hover:shadow-soft-lg"
+                style={{ transitionTimingFunction: "cubic-bezier(.22,1,.36,1)", transitionDuration: "300ms" }}
               >
-                <div className="flex items-start justify-between gap-3 mb-4">
-                  <span className="text-xs tracking-luxury uppercase text-primary">
+                <div className="flex items-start justify-between gap-3 mb-5">
+                  <span className="text-xs tracking-luxury uppercase text-primary/80">
                     {`0${ci + 1}`}
                   </span>
-                  <ArrowUpRight
-                    className="h-5 w-5 shrink-0 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    strokeWidth={1.4}
-                  />
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-border group-hover:border-primary/40 group-hover:bg-primary/10 ease-premium transition-all duration-300">
+                    <ArrowUpRight
+                      className="h-4 w-4 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      strokeWidth={1.5}
+                    />
+                  </span>
                 </div>
-                <h3 className="font-display text-3xl sm:text-4xl leading-tight mb-6">
+                <h3 className="font-display text-3xl sm:text-4xl leading-[1.1] mb-6 tracking-tight">
                   {cat.label}
                 </h3>
                 <ul className="space-y-4">
@@ -74,7 +77,7 @@ export const Services = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="services-full-offer"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
+              className="group inline-flex h-[54px] items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-9 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5"
             >
               {t.services.cta}
               <ArrowUpRight

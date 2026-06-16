@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Check, ArrowRight } from "lucide-react";
 import { SITE } from "@/constants/site";
@@ -9,6 +9,18 @@ const HERO_BG_IMAGE = "/hero-image.png";
 
 export const Hero = () => {
   const { t } = useLanguage();
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  // Subtle parallax — image drifts up slower than the page
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "18%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.08]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "40%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -17,24 +29,56 @@ export const Hero = () => {
 
   return (
     <section
+      ref={ref}
       id="hero"
       data-testid="hero-section"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
+      {/* Background Image with Overlay + subtle parallax & slow ambient movement */}
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        style={{ y: imgY, scale: imgScale }}
+      >
         <img
           src={HERO_BG_IMAGE}
           alt="Dream Barbershop Interior"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover img-rich ${reduce ? "" : "animate-slow-zoom"}`}
           loading="eager"
         />
-        {/* Gradient overlay - darker on left, transparent on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/15" />
-      </div>
+      </motion.div>
+
+      {/* Cinematic overlays: dark→transparent from left + top/bottom falloff */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-background/30" />
+
+      {/* Floating warm ambient light */}
+      {!reduce && (
+        <>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-24 left-1/4 h-[42rem] w-[42rem] rounded-full animate-ambient"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(var(--primary) / 0.16) 0%, transparent 60%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute bottom-10 right-[12%] h-3 w-3 rounded-full bg-primary/70 blur-[2px] animate-float-soft"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-1/3 right-[28%] h-2 w-2 rounded-full bg-primary/50 blur-[1px] animate-float-soft"
+            style={{ animationDelay: "2.5s" }}
+          />
+        </>
+      )}
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-32 sm:py-40 w-full">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-32 sm:py-40 w-full"
+      >
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <motion.div
@@ -77,11 +121,11 @@ export const Hero = () => {
             <button
               data-testid="hero-cta-book"
               onClick={() => scrollTo("booking")}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-8 py-4 text-xs tracking-luxury uppercase transition-colors whitespace-nowrap"
+              className="group inline-flex h-[54px] items-center justify-center gap-2 rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-8 text-xs tracking-luxury uppercase whitespace-nowrap ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5"
             >
               {t.hero.ctaPrimary}
               <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                 strokeWidth={1.5}
               />
             </button>
@@ -90,7 +134,7 @@ export const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="hero-cta-booksy"
-              className="inline-flex items-center justify-center rounded-full border border-foreground/70 bg-foreground/20 backdrop-blur-sm hover:bg-foreground/30 hover:border-foreground px-8 py-4 text-xs tracking-luxury uppercase text-foreground transition-colors whitespace-nowrap"
+              className="inline-flex h-[54px] items-center justify-center rounded-full border border-foreground/25 bg-foreground/5 backdrop-blur-md hover:bg-foreground/10 hover:border-foreground/50 px-8 text-xs tracking-luxury uppercase text-foreground ease-premium transition-all duration-300 whitespace-nowrap"
             >
               {t.hero.ctaSecondary}
             </a>
@@ -115,7 +159,7 @@ export const Hero = () => {
             ))}
           </motion.ul>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -7,6 +7,16 @@ import { Sparkles, Heart, UserCheck, Gem, Users, MapPin, ChevronsRight } from "l
 
 const ICONS = [Sparkles, Heart, UserCheck, Gem, Users, MapPin];
 
+// Asymmetric 12-col widths → staggered editorial composition
+const SPANS = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-5",
+  "lg:col-span-7",
+  "lg:col-span-6",
+  "lg:col-span-6",
+];
+
 const ScrollHint = ({ label }) => (
   <div className="flex items-center justify-center gap-2 mt-5 text-muted-foreground">
     <span className="text-xs uppercase tracking-luxury font-semibold">
@@ -37,10 +47,10 @@ export const WhyUs = () => {
                 <div
                   key={i}
                   data-testid={`why-item-${i}`}
-                  className="snap-center shrink-0 max-w-[280px] group rounded-3xl border border-border/70 bg-card hover:bg-secondary/40 p-8 transition-colors flex flex-col items-start gap-5"
+                  className="snap-center shrink-0 w-[270px] group card-premium rounded-3xl border border-border p-8 flex flex-col items-start gap-5"
                 >
-                  <div className="h-14 w-14 rounded-2xl bg-secondary text-primary flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icon className="h-6 w-6" strokeWidth={1.2} />
+                  <div className="h-14 w-14 rounded-2xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/15 flex items-center justify-center">
+                    <Icon className="h-6 w-6" strokeWidth={1.3} />
                   </div>
                   <div>
                     <p className="font-display text-2xl leading-tight">{item.title}</p>
@@ -55,22 +65,25 @@ export const WhyUs = () => {
           <ScrollHint label={t.gallery.scrollHint || "Przesuń"} />
         </div>
 
-        {/* Tablet/Desktop: content-width cards, centered */}
-        <div className="hidden sm:flex mt-14 sm:mt-20 flex-wrap justify-center gap-6 max-w-5xl mx-auto">
+        {/* Tablet/Desktop: staggered asymmetric composition */}
+        <div className="hidden sm:grid mt-10 sm:mt-14 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6 max-w-6xl mx-auto">
           {t.why.items.map((item, i) => {
             const Icon = ICONS[i % ICONS.length];
+            // Alternating widths + vertical offset = editorial rhythm
+            const span = SPANS[i % SPANS.length];
+            const offset = i % 2 === 1 ? "lg:translate-y-7" : "";
             return (
-              <Reveal key={i} delay={(i % 3) * 0.08}>
+              <Reveal key={i} delay={(i % 3) * 0.08} className={`${span} ${offset}`}>
                 <div
                   data-testid={`why-item-${i}`}
-                  className="group w-fit max-w-md rounded-3xl border border-border/70 bg-card hover:bg-secondary/40 p-6 sm:p-7 transition-colors flex items-start gap-5"
+                  className="group card-premium hover-lift border-warm-hover rounded-3xl border border-border p-7 sm:p-8 hover:shadow-soft-lg flex items-start gap-5 h-full"
                 >
-                  <div className="h-12 w-12 shrink-0 rounded-2xl bg-secondary text-primary flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icon className="h-5 w-5" strokeWidth={1.2} />
+                  <div className="h-12 w-12 shrink-0 rounded-2xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/15 flex items-center justify-center ease-premium transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-primary/15">
+                    <Icon className="h-5 w-5" strokeWidth={1.3} />
                   </div>
                   <div>
-                    <p className="font-display text-xl leading-tight whitespace-nowrap">{item.title}</p>
-                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                    <p className="font-display text-2xl leading-tight tracking-tight">{item.title}</p>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>

@@ -71,7 +71,7 @@ export const Navbar = () => {
           <button
             data-testid="nav-cta-book"
             onClick={() => handleNav("booking")}
-            className="hidden sm:inline-flex items-center rounded-full bg-foreground text-background hover:bg-primary px-5 py-2.5 text-xs tracking-luxury uppercase transition-colors"
+            className="hidden sm:inline-flex items-center rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-6 py-3 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5"
           >
             {t.nav.book}
           </button>

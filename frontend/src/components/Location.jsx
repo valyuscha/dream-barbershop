@@ -10,16 +10,16 @@ const InfoItem = ({ icon: Icon, label, children, delay, testId }) => (
   <Reveal delay={delay} className="flex-1 min-w-[150px]">
     <div
       data-testid={testId}
-      className="flex flex-col items-center text-center gap-3 px-2"
+      className="group flex flex-col items-center text-center gap-4 px-2"
     >
-      <div className="h-12 w-12 rounded-full bg-secondary text-primary flex items-center justify-center">
-        <Icon className="h-5 w-5" strokeWidth={1.4} />
+      <div className="h-16 w-16 rounded-2xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/15 flex items-center justify-center ease-premium transition-all duration-300 group-hover:scale-105 group-hover:bg-primary/15">
+        <Icon className="h-7 w-7" strokeWidth={1.3} />
       </div>
       <div>
-        <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">
+        <p className="text-[10px] tracking-luxury uppercase text-muted-foreground">
           {label}
         </p>
-        <div className="text-sm sm:text-base mt-1 text-foreground/90">{children}</div>
+        <div className="font-display text-lg sm:text-xl mt-1.5 text-foreground/95 leading-snug">{children}</div>
       </div>
     </div>
   </Reveal>
@@ -30,7 +30,7 @@ export const Location = () => {
   return (
     <section id="location" data-testid="location-section" className="py-16 sm:py-32">
       <div className="max-w-5xl mx-auto px-5 sm:px-8">
-        <div className="relative rounded-[2.5rem] border border-border/70 bg-card overflow-hidden">
+        <div className="relative rounded-[2.5rem] border border-border card-premium overflow-hidden shadow-soft-lg">
           <div className="relative px-6 py-12 sm:px-14 sm:py-16 text-center">
             <Reveal>
               <span className="inline-block text-xs tracking-luxury uppercase text-primary">
@@ -74,7 +74,7 @@ export const Location = () => {
                     <span
                       key={i}
                       data-testid={`location-amenity-${i}`}
-                      className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-secondary/40 px-4 py-2 text-sm text-foreground/80"
+                      className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/[0.03] px-4 py-2.5 text-sm text-foreground/85 ease-premium transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-foreground hover:-translate-y-0.5"
                     >
                       <Icon className="h-4 w-4 text-primary" strokeWidth={1.5} />
                       {a}
@@ -92,7 +92,7 @@ export const Location = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="location-navigate-btn"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-8 py-4 text-xs tracking-luxury uppercase transition-colors whitespace-nowrap"
+                  className="group inline-flex h-[54px] items-center justify-center gap-2 rounded-full bg-foreground text-background hover:bg-primary hover:text-primary-foreground px-8 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 whitespace-nowrap"
                 >
                   <Navigation className="h-4 w-4" strokeWidth={1.5} />
                   {t.location.navigate}
@@ -100,7 +100,7 @@ export const Location = () => {
                 <a
                   href={`tel:${SITE.phoneTel}`}
                   data-testid="location-call-btn"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-foreground/20 hover:border-foreground/60 px-8 py-4 text-xs tracking-luxury uppercase transition-colors whitespace-nowrap"
+                  className="inline-flex h-[54px] items-center justify-center gap-2 rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 px-8 text-xs tracking-luxury uppercase ease-premium transition-all duration-300 whitespace-nowrap"
                 >
                   <Phone className="h-4 w-4" strokeWidth={1.5} />
                   {t.location.call}

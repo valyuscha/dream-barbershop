@@ -15,38 +15,45 @@ export const Reviews = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <SectionHeader eyebrow={t.reviews.eyebrow} title={t.reviews.title} testId="reviews-header" />
 
+        {/* Average score — prominent trust badge */}
         <Reveal delay={0.1}>
-          <div className="mt-10 flex items-center justify-center gap-3" data-testid="reviews-rating">
-            <div className="flex items-center gap-1 text-primary">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-current" strokeWidth={0} />
-              ))}
+          <div
+            className="mt-10 mx-auto w-fit flex items-center gap-5 rounded-2xl glass-subtle px-7 py-5 shadow-soft"
+            data-testid="reviews-rating"
+          >
+            <span className="font-display text-5xl sm:text-6xl leading-none text-foreground">5.0</span>
+            <div className="h-12 w-px bg-border" />
+            <div className="text-left">
+              <div className="flex items-center gap-1 text-primary">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-[18px] w-[18px] fill-current" strokeWidth={0} />
+                ))}
+              </div>
+              <span className="mt-1.5 block text-sm text-muted-foreground">{t.reviews.rating}</span>
             </div>
-            <span className="font-display text-2xl text-foreground">5.0</span>
-            <span className="text-sm text-muted-foreground">{t.reviews.rating}</span>
           </div>
         </Reveal>
       </div>
 
-      <div className="mt-16 relative overflow-hidden">
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+      <div className="mt-14 relative overflow-hidden py-2">
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
         <div className="flex gap-5 sm:gap-6 animate-marquee w-max">
           {loop.map((r, i) => (
             <div
               key={i}
               data-testid={`review-card-${i}`}
-              className="w-[300px] sm:w-[380px] shrink-0 rounded-3xl border border-border/70 bg-card p-6 sm:p-8"
+              className="group w-[330px] sm:w-[440px] shrink-0 rounded-3xl border border-border card-premium p-7 sm:p-9 opacity-80 hover:opacity-100 hover-lift border-warm-hover hover:shadow-soft-lg flex flex-col"
             >
-              <Quote className="h-6 w-6 text-primary" strokeWidth={1.4} />
-              <p className="mt-4 font-display text-xl sm:text-2xl leading-snug text-foreground">
+              <Quote className="h-8 w-8 text-primary/70" strokeWidth={1.2} />
+              <p className="mt-5 font-display text-2xl sm:text-[1.7rem] leading-[1.3] text-foreground/95 flex-1">
                 „{r.text}&rdquo;
               </p>
-              <div className="mt-6 flex items-center justify-between">
-                <span className="text-sm text-foreground/80">{r.name}</span>
-                <div className="flex items-center gap-0.5 text-primary">
+              <div className="mt-7 flex items-center justify-between pt-5 border-t border-border">
+                <span className="text-sm font-medium text-foreground/90">{r.name}</span>
+                <div className="flex items-center gap-1 text-primary">
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+                    <Star key={j} className="h-4 w-4 fill-current" strokeWidth={0} />
                   ))}
                 </div>
               </div>

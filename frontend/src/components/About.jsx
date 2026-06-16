@@ -54,22 +54,20 @@ export const About = () => {
           </Reveal>
 
           {/* Desktop: values grid below text */}
-          <div className="hidden sm:grid mt-10 grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="hidden sm:grid mt-12 grid-cols-1 sm:grid-cols-2 gap-5">
             {t.about.values.map((v, i) => {
               const Icon = ICONS[i % ICONS.length];
               return (
                 <Reveal key={i} delay={0.1 + i * 0.06}>
                   <div
                     data-testid={`about-value-${i}`}
-                    className="group flex items-start gap-4 rounded-2xl border border-border/70 bg-card hover:bg-secondary/50 transition-colors p-5"
+                    className="group glass-subtle hover-lift border-warm-hover rounded-3xl p-6 hover:shadow-soft h-full"
                   >
-                    <div className="h-10 w-10 shrink-0 rounded-full bg-secondary text-primary flex items-center justify-center">
-                      <Icon className="h-5 w-5" strokeWidth={1.4} />
+                    <div className="h-9 w-9 shrink-0 rounded-xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-inset ring-primary/15 group-hover:scale-105 ease-premium transition-transform duration-300">
+                      <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} />
                     </div>
-                    <div>
-                      <p className="font-display text-xl leading-tight">{v.title}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
-                    </div>
+                    <p className="font-display text-2xl leading-tight mt-5 tracking-tight">{v.title}</p>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{v.desc}</p>
                   </div>
                 </Reveal>
               );
@@ -80,23 +78,25 @@ export const About = () => {
         {/* Right: image and quote block - clean vertical stack */}
         <div className="lg:col-span-5 w-full sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0">
           <Reveal delay={0.1}>
-            <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden">
+            <div className="group relative aspect-[3/4] w-full rounded-[2rem] overflow-hidden glow-warm ring-1 ring-inset ring-foreground/10">
               <img
                 src={ABOUT_IMAGE}
                 alt="Dream Barbershop — barber at work"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover img-rich ease-premium transition-transform [transition-duration:1200ms] group-hover:scale-[1.04]"
                 loading="lazy"
               />
-              <div className="absolute -bottom-px left-0 right-0 bg-gradient-to-t from-background/40 to-transparent h-1/3" />
+              <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-background/55 via-background/10 to-transparent" />
             </div>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-4 rounded-2xl border border-border/70 bg-card p-6">
-              <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">Dream Barbershop</p>
-              <p className="font-display text-2xl mt-2 leading-snug">
+            <figure className="mt-7 pl-5 border-l-2 border-primary/40">
+              <blockquote className="font-display text-2xl sm:text-[1.7rem] leading-snug text-foreground/95 italic">
                 &ldquo;{t.about.quote}&rdquo;
-              </p>
-            </div>
+              </blockquote>
+              <figcaption className="mt-3 text-[11px] tracking-luxury uppercase text-muted-foreground">
+                Dream Barbershop
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
 
@@ -109,15 +109,13 @@ export const About = () => {
                 <div
                   key={i}
                   data-testid={`about-value-${i}`}
-                  className="snap-center shrink-0 max-w-[280px] group flex flex-col items-start gap-4 rounded-2xl border border-border/70 bg-card hover:bg-secondary/50 transition-colors p-5"
+                  className="snap-center shrink-0 w-[260px] group flex flex-col items-start glass-subtle rounded-3xl p-6"
                 >
-                  <div className="h-10 w-10 shrink-0 rounded-full bg-secondary text-primary flex items-center justify-center">
-                    <Icon className="h-5 w-5" strokeWidth={1.4} />
+                  <div className="h-9 w-9 shrink-0 rounded-xl bg-primary/10 text-primary flex items-center justify-center ring-1 ring-inset ring-primary/15">
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <p className="font-display text-xl leading-tight">{v.title}</p>
-                    <p className="text-sm text-muted-foreground mt-1">{v.desc}</p>
-                  </div>
+                  <p className="font-display text-2xl leading-tight mt-5">{v.title}</p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{v.desc}</p>
                 </div>
               );
             })}

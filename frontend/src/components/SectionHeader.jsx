@@ -7,7 +7,7 @@ export const SectionHeader = ({ eyebrow, title, subtitle, align = "center", test
     <div className={`flex flex-col gap-4 ${alignCls} max-w-3xl mx-auto`} data-testid={testId}>
       {eyebrow && (
         <Reveal>
-          <span className="text-xs tracking-luxury uppercase text-primary font-medium">
+          <span className="text-[11px] tracking-luxury uppercase text-primary/80 font-semibold">
             {eyebrow}
           </span>
         </Reveal>

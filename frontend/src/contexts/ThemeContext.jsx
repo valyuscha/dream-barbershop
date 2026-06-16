@@ -1,20 +1,18 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 const ThemeContext = createContext(null);
 const STORAGE_KEY = "dream-barbershop-theme";
 
 const readInitialTheme = () => {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "dark" || saved === "light") return saved;
   } catch (e) {
     // localStorage unavailable
   }
-  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    return "dark";
-  }
-  return "light";
+  // Dark is the premium brand identity — default to it unless the user opts out.
+  return "dark";
 };
 
 export const ThemeProvider = ({ children }) => {
@@ -26,18 +24,24 @@ export const ThemeProvider = ({ children }) => {
     else root.classList.remove("dark");
   }, [theme]);
 
-  const setTheme = (t) => {
+  const setTheme = useCallback((t) => {
     setThemeState(t);
     try {
       localStorage.setItem(STORAGE_KEY, t);
     } catch (e) {
       // ignore storage errors
     }
-  };
+  }, []);
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const toggleTheme = useCallback(
+    () => setTheme(theme === "dark" ? "light" : "dark"),
+    [theme, setTheme]
+  );
 
-  const value = useMemo(() => ({ theme, setTheme, toggleTheme }), [theme]);
+  const value = useMemo(
+    () => ({ theme, setTheme, toggleTheme }),
+    [theme, setTheme, toggleTheme]
+  );
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
