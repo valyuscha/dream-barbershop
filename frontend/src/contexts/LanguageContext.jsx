@@ -3,7 +3,7 @@ import { translations, LANGUAGES } from "@/i18n/translations";
 
 const LanguageContext = createContext(null);
 
-const STORAGE_KEY = "moon-beauty-lang";
+const STORAGE_KEY = "dream-barbershop-lang";
 
 const readInitialLang = () => {
   if (typeof window === "undefined") return "pl";

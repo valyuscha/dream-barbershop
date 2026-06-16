@@ -19,7 +19,7 @@ const ScrollHint = ({ label }) => (
     </motion.span>
   </div>
 );
-const ABOUT_IMAGE = "/aboutUs.jpg";
+const ABOUT_IMAGE = "/about-us.png";
 
 export const About = () => {
   const { t } = useLanguage();
@@ -83,7 +83,7 @@ export const About = () => {
             <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden">
               <img
                 src={ABOUT_IMAGE}
-                alt="Salon details"
+                alt="Dream Barbershop — barber at work"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
               />
@@ -92,7 +92,7 @@ export const About = () => {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-4 rounded-2xl border border-border/70 bg-card p-6">
-              <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">Moon Beauty Space</p>
+              <p className="text-[11px] tracking-luxury uppercase text-muted-foreground">Dream Barbershop</p>
               <p className="font-display text-2xl mt-2 leading-snug">
                 &ldquo;{t.about.quote}&rdquo;
               </p>

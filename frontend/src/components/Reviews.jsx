@@ -22,7 +22,7 @@ export const Reviews = () => {
                 <Star key={i} className="h-5 w-5 fill-current" strokeWidth={0} />
               ))}
             </div>
-            <span className="font-display text-2xl text-foreground">4.9</span>
+            <span className="font-display text-2xl text-foreground">5.0</span>
             <span className="text-sm text-muted-foreground">{t.reviews.rating}</span>
           </div>
         </Reveal>

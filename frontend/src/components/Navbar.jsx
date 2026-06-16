@@ -45,10 +45,10 @@ export const Navbar = () => {
           onClick={() => handleNav("hero")}
           data-testid="brand-logo"
           className="flex items-center gap-2 group"
-          aria-label="Moon Beauty Space"
+          aria-label="Dream Barbershop"
         >
           <span className="font-display text-xl sm:text-2xl tracking-tight text-foreground group-hover:text-primary transition-colors">
-            Moon<span className="text-primary">.</span> Beauty Space
+            Dream<span className="text-primary">.</span> Barbershop
           </span>
         </button>
 

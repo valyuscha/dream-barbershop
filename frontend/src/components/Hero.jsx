@@ -4,8 +4,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Check, ArrowRight } from "lucide-react";
 import { SITE } from "@/constants/site";
 
-// Hero background image - salon interior
-const HERO_BG_IMAGE = "/hero.jpg";
+// Hero background image - barber working, warm interior
+const HERO_BG_IMAGE = "/hero-image.png";
 
 export const Hero = () => {
   const { t } = useLanguage();
@@ -25,7 +25,7 @@ export const Hero = () => {
       <div className="absolute inset-0">
         <img
           src={HERO_BG_IMAGE}
-          alt="Moon Beauty Space Salon Interior"
+          alt="Dream Barbershop Interior"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
         />

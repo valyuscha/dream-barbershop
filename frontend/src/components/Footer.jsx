@@ -25,7 +25,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
             <p className="font-display text-3xl sm:text-4xl leading-tight">
-              Moon<span className="text-primary">.</span> Beauty Space
+              Dream<span className="text-primary">.</span> Barbershop
             </p>
             <p className="mt-4 text-muted-foreground max-w-sm">{t.footer.tagline}</p>
           </div>

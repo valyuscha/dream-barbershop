@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const ThemeContext = createContext(null);
-const STORAGE_KEY = "moon-beauty-theme";
+const STORAGE_KEY = "dream-barbershop-theme";
 
 const readInitialTheme = () => {
   if (typeof window === "undefined") return "light";

@@ -23,7 +23,7 @@ const ScrollHint = ({ label }) => (
 
 export const Gallery = () => {
   const { t } = useLanguage();
-  const [active, setActive] = useState("minimal");
+  const [active, setActive] = useState("fade");
   const images = GALLERY[active] || [];
 
   return (
@@ -56,7 +56,7 @@ export const Gallery = () => {
                   : "border-border/70 text-foreground/70 hover:text-foreground hover:border-foreground/50"
               }`}
             >
-              {tab.label}
+              {t.gallery.tabs?.[tab.id] || tab.label}
             </button>
           ))}
         </div>
@@ -80,7 +80,7 @@ export const Gallery = () => {
                 >
                   <img
                     src={src}
-                    alt={`Moon Beauty Space — ${active} ${i + 1}`}
+                    alt={`Dream Barbershop — ${active} ${i + 1}`}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
@@ -109,7 +109,7 @@ export const Gallery = () => {
               >
                 <img
                   src={src}
-                  alt={`Moon Beauty Space — ${active} ${i + 1}`}
+                  alt={`Dream Barbershop — ${active} ${i + 1}`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                 />
@@ -123,13 +123,13 @@ export const Gallery = () => {
         <Reveal delay={0.2}>
           <div className="mt-12 sm:mt-16 flex justify-center">
             <a
-              href={SITE.booksyUrl}
+              href={SITE.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="gallery-view-all"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background hover:bg-primary px-9 py-4 text-xs tracking-luxury uppercase transition-colors"
             >
-              {t.gallery.viewAll || "Zobacz całe portfolio"}
+              {t.gallery.viewAll || "Zobacz więcej"}
               <ArrowUpRight
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 strokeWidth={1.5}
