@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Home from "@/pages/Home";
+import LinkedInWatermark from "@/components/LinkedInWatermark";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </BrowserRouter>
         </LanguageProvider>
       </ThemeProvider>
+      <LinkedInWatermark />
     </div>
   );
 }
